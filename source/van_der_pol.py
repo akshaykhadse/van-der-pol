@@ -34,12 +34,6 @@ mu = 1.0
 X0 = [1.0, 2.0]
 
 
-# Export Parameters to a txt file
-with open('getparams.txt', 'w') as getparams:
-    getparams.write('\\newcommand{\getmu}{' + str(mu) + '}\n')
-    getparams.write('\\newcommand{\getinitial}{' + str(X0) + '}\n')
-
-
 # Function for set of Van der Pol Equations
 def vanderpol(X, t, mu=mu):
     """This is the the function for Van der Pol Differential Equations
@@ -157,8 +151,13 @@ def PhasePlot(x, y):
     plt.savefig('vanderpol-2.png')
     return fig
 
+if __name__ == '__main__':
+    # Export Parameters to a txt file
+    with open('getparams.txt', 'w') as getparams:
+        getparams.write('\\newcommand{\getmu}{' + str(mu) + '}\n')
+        getparams.write('\\newcommand{\getinitial}{' + str(X0) + '}\n')
 
-# Main Processing
-[x, y, t] = solve(X0)
-SolutionPlot(x, y, t)
-PhasePlot(x, y)
+    # Main Processing
+    [x, y, t] = solve(X0)
+    SolutionPlot(x, y, t)
+    PhasePlot(x, y)
